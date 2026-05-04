@@ -269,17 +269,6 @@ All 28 conditional-move variants follow the pattern `move_if_<condition>`:
 
 ## License
 
-x86-ARC is licensed under the **GNU General Public License v2.0 only** (`GPL-2.0-only`).
+x86-ARC is licensed under the **BSD 2-Clause License**.
 
-### Assembler output is yours
-
-As a special exception to the GPL, the **output produced by x86-ARC** — ELF executables,
-relocatable objects, raw flat binaries, and DOS COM files — may be distributed under
-**any license you choose**, including proprietary licenses.  This means the programs
-you build with x86-ARC belong entirely to you.
-
-The exception covers object files, executables, and any runtime stubs or support
-sequences automatically emitted during assembly.  It does **not** cover the assembler
-source itself (`arc.s`, `core/`, `arch/`, etc.) or any modifications you make to it.
-
-See the [`LICENSE`](LICENSE) file for the complete GPL v2 text and the full exception wording.
+Copyright (c) 2026 danko1122q. See the [`LICENSE`](LICENSE) file for the full terms.
