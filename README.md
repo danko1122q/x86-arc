@@ -99,11 +99,33 @@ format com
 
     mov  ah, 9
     mov  dx, msg
-    int  21h
+    trap 0x21
     mov  ax, 4C00h
-    int  21h
+    trap 0x21
 
 msg u8 'Hello!', 13, 10, '$'
+```
+
+---
+
+## Minimal ELF32 — 91 bytes
+
+The smallest valid ELF32 executable arc can produce is **91 bytes** — no padding, no section headers, no symbol table. Just the 52-byte ELF header, 32-byte program header, and 7 bytes of code.
+
+```asm
+format elf executable 3
+
+    xor  eax, eax
+    inc  eax        ; eax = 1 (sys_exit)
+    xor  ebx, ebx   ; exit code 0
+    trap 0x80
+```
+
+```sh
+arc exit0.s exit0
+chmod +x exit0
+qemu-i386 ./exit0
+echo $?   ; 0
 ```
 
 ---
@@ -194,7 +216,7 @@ core/
   msgdata.s         error message strings
   fault.s           error reporting
   dump.s            symbol dump
-  version.s             version constant
+  ver.s             version constant
 arch/
   x86.s             x86-32 instruction set
   vec.s             SSE/AVX vector instructions
