@@ -23,7 +23,7 @@ as_format_limitations_exceeded:
 	jmp	as_general_error
 as_invalid_definition:
 	push	_as_invalid_definition
-    as_general_error:
+      as_general_error:
 	cmp	[as_symbols_file],0
 	if_equal	as_fatal_error
 	call	as_dump_preprocessed_source
@@ -106,13 +106,13 @@ as_undefined_symbol:
 	mov	as_u8 [edi-1],20h
 	call	as_write_quoted_symbol_name
 	jmp	as_error_with_source
-    as_copy_asciiz:
+      as_copy_asciiz:
 	lods	as_u8 [esi]
 	stos	as_u8 [edi]
 	test	al,al
 	if_not_zero	as_copy_asciiz
 	ret
-    as_write_quoted_symbol_name:
+      as_write_quoted_symbol_name:
 	mov	al,27h
 	stosb
 	movzx	ecx,as_u8 [esi-1]
@@ -132,7 +132,7 @@ as_symbol_out_of_scope:
 	if_zero	as_finish_symbol_out_of_scope_message
 	mov	as_u8 [edi-1],20h
 	call	as_write_quoted_symbol_name
-    as_finish_symbol_out_of_scope_message:
+      as_finish_symbol_out_of_scope_message:
 	mov	as_u8 [edi-1],20h
 	mov	esi,_as_symbol_out_of_scope_2
 	call	as_copy_asciiz
@@ -182,7 +182,7 @@ as_assertion_failed:
 	jmp	as_error_with_source
 as_invoked_error:
 	push	_as_invoked_error
-    as_error_with_source:
+      as_error_with_source:
 	cmp	[as_symbols_file],0
 	if_equal	as_assembler_error
 	call	as_dump_preprocessed_source

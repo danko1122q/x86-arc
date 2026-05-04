@@ -68,7 +68,7 @@ as_int_instruction:
 	mov	al,0CDh
 	stos	as_u16 [edi]
 	jmp	as_instruction_assembled
-    as_take_byte_value:
+      as_take_byte_value:
 	lods	as_u8 [esi]
 	call	as_get_size_operator
 	cmp	ah,1
@@ -4392,10 +4392,10 @@ as_movq_instruction:
 	cmp	ah,8
 	if_equal	as_movq_mem_ready
 	mov	al,0D6h
-     as_movq_mem_ready:
+      as_movq_mem_ready:
 	mov	[as_extended_code],al
 	jmp	as_instruction_ready
-     as_movq_reg:
+      as_movq_reg:
 	lods	as_u8 [esi]
 	cmp	al,0B0h
 	if_above_equal	as_movq_mmreg
@@ -4407,7 +4407,7 @@ as_movq_instruction:
 	call	as_operand_64bit
 	call	as_get_mmx_source_register
 	jmp	as_nomem_instruction_ready
-     as_movq_mmreg:
+      as_movq_mmreg:
 	call	as_convert_mmx_register
 	mov	[as_postbyte_register],al
 	mov	[as_extended_code],6Fh
@@ -6060,14 +6060,14 @@ as_xbegin_instruction:
 	stos	as_u32 [edi]
 	jmp	as_instruction_assembled
 
-    as_get_bnd_size:
+      as_get_bnd_size:
 	mov	al,4
 	jmp	as_bnd_size_ok
 	add	al,4
       as_bnd_size_ok:
 	mov	[as_address_size],al
 	ret
-    as_get_address_component:
+      as_get_address_component:
 	mov	[as_free_address_range],0
 	call	as_calculate_address
 	mov	[as_address_high],edx
@@ -6085,7 +6085,7 @@ as_xbegin_instruction:
       as_address_component_ok:
 	ret
 as_bndldx_instruction:
-     as_get_sib_address_components:
+      as_get_sib_address_components:
 	lods	as_u8 [esi]
 	cmp	al,'['
 	if_not_equal	as_invalid_operand
@@ -6406,7 +6406,7 @@ as_get_jump_operator:
 	ret
 as_get_address:
 	and	[as_address_size],0
-    as_get_address_of_required_size:
+      as_get_address_of_required_size:
 	call	as_get_address_prefixes
 	and	[as_free_address_range],0
 	call	as_calculate_address

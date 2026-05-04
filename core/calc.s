@@ -230,7 +230,7 @@ macro pack_sign32 dst, sign_src {
 	if_not_zero	as_use_undefined_data_offset
 	cmp	eax,[as_current_offset]
 	if_not_equal	as_use_current_offset
-       as_use_undefined_data_offset:
+      as_use_undefined_data_offset:
 	mov	eax,[as_undefined_data_start]
 	jmp	as_make_file_offset_label
       as_current_file_offset_label:
@@ -239,16 +239,16 @@ macro pack_sign32 dst, sign_src {
 	if_zero	as_use_current_offset
 	mov	eax,[as_undefined_data_end]
 	jmp	as_make_file_offset_label
-       as_use_current_offset:
+      as_use_current_offset:
 	mov	eax,[as_current_offset]
-       as_make_file_offset_label:
+      as_make_file_offset_label:
 	cmp	[as_output_format],2
 	if_above_equal	as_invalid_use_of_symbol
 	sub	eax,[as_code_start]
 	jmp	as_make_dword_label_value
       as_current_offset_label:
 	mov	eax,[as_current_offset]
-       as_make_current_offset_label:
+      as_make_current_offset_label:
 	xor	edx,edx
 	xor	ch,ch
 	mov	ebp,[as_addressing_space]
@@ -257,7 +257,7 @@ macro pack_sign32 dst, sign_src {
 	sub_with_borrow	ch,[ds:ebp+8]
 	jp	as_current_offset_label_ok
 	call	as_recoverable_overflow
-       as_current_offset_label_ok:
+      as_current_offset_label_ok:
 	stos	as_u32 [edi]
 	mov	eax,edx
 	stos	as_u32 [edi]
@@ -1792,7 +1792,7 @@ as_calculate_relative_offset:
 
 as_calculate_logical_expression:
 	xor	al,al
-  as_calculate_embedded_logical_expression:
+      as_calculate_embedded_logical_expression:
 	mov	[as_logical_value_wrapping],al
 	call	as_get_logical_value
       as_logical_loop:
@@ -1825,7 +1825,7 @@ as_calculate_logical_expression:
 	if_carry	as_invalid_expression
 	pop	eax
 	jmp	as_logical_loop
-  as_get_value_for_comparison:
+      as_get_value_for_comparison:
 	mov	[as_value_size],8
 	or	[as_operand_flags],1
 	lods	as_u8 [esi]
@@ -1847,7 +1847,7 @@ as_calculate_logical_expression:
 	mov	edx,[edi+4]
 	mov	ecx,[edi+8]
 	ret
-  as_get_logical_value:
+      as_get_logical_value:
 	xor	al,al
       as_check_for_negation:
 	cmp	as_u8 [esi],'~'

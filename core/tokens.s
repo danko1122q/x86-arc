@@ -927,7 +927,7 @@ as_get_fp_value:
 
 as_preevaluate_logical_expression:
 	xor	al,al
-  as_preevaluate_embedded_logical_expression:
+      as_preevaluate_embedded_logical_expression:
 	mov	[as_logical_value_wrapping],al
 	push	edi
 	call	as_preevaluate_logical_value
@@ -1008,7 +1008,7 @@ as_preevaluate_logical_expression:
 	mov	al,0FFh
 	stos	as_u8 [edi]
 	ret
-  as_skip_logical_value:
+      as_skip_logical_value:
 	cmp	as_u8 [esi],'~'
 	if_not_equal	as_negation_skipped
 	inc	esi
@@ -1068,7 +1068,7 @@ as_preevaluate_logical_expression:
       as_skip_logical_value_symbol:
 	call	as_skip_symbol
 	jmp	as_find_simple_logical_value_end
-  as_preevaluate_logical_value:
+      as_preevaluate_logical_value:
 	mov	ebp,edi
       as_preevaluate_negation:
 	cmp	as_u8 [esi],'~'

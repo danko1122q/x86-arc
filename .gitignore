@@ -1,5 +1,6 @@
 # x86-ARC assembler — build output
 arc
+arc32
 arc.exe
 
 # Assembled output files

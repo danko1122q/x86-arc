@@ -1552,7 +1552,7 @@ as_avx_shift_d_instruction:
 	jmp	as_avx_shift_instruction
 as_avx_shift_bw_instruction:
 	xor	cl,cl
-       as_avx_shift_instruction:
+      as_avx_shift_instruction:
 	mov	[as_broadcast_size],cl
 	mov	[as_mmx_size],0
 	mov	[as_opcode_prefix],66h

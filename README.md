@@ -108,25 +108,46 @@ msg u8 'Hello!', 13, 10, '$'
 
 ---
 
-## Minimal ELF32 — 91 bytes
+## Small ELF32 — 87 bytes
 
-The smallest valid ELF32 executable arc can produce is **91 bytes** — no padding, no section headers, no symbol table. Just the 52-byte ELF header, 32-byte program header, and 7 bytes of code.
+52-byte ELF header, 32-byte program header, 3 bytes of code. Linux i386 guarantees `eax = 0` at process entry.
 
 ```asm
 format elf executable 3
 
-    xor  eax, eax
     inc  eax        ; eax = 1 (sys_exit)
-    xor  ebx, ebx   ; exit code 0
     trap 0x80
 ```
 
 ```sh
-arc exit0.s exit0
-chmod +x exit0
-qemu-i386 ./exit0
+arc 87.s 87
+chmod +x 87
+qemu-i386 ./87
 echo $?   ; 0
 ```
+
+### Running on a 64-bit host
+
+A 64-bit Linux host typically lacks the `ia32` kernel personality needed to exec 32-bit ELFs directly. Install QEMU user-mode emulation:
+
+```sh
+# Debian / Ubuntu
+sudo apt install qemu-user
+
+# Fedora / RHEL
+sudo dnf install qemu-user
+
+# Arch Linux
+sudo pacman -S qemu-user
+```
+
+Then run any ELF32 binary with:
+
+```sh
+qemu-i386 ./exit0
+```
+
+If you want 32-bit ELFs to run transparently (without the `qemu-i386` prefix), also install `qemu-user-binfmt` (Debian/Ubuntu) or the equivalent binfmt-misc package for your distro, then restart `systemd-binfmt`.
 
 ---
 

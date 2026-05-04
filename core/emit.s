@@ -1627,7 +1627,7 @@ as_data_unicode:
 	jmp	as_define_words
 as_data_words:
 	mov	[as_base_code],0
-    as_define_words:
+      as_define_words:
 	call	as_define_data
 	if_carry	as_instruction_assembled
 	lods	as_u8 [esi]

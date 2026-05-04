@@ -147,7 +147,7 @@ as_open:
 	mov	ebx,eax
 	clear_carry
 	ret
-    as_adapt_path:
+      as_adapt_path:
 	mov	esi,edx
 	mov	edi,as_buffer
       as_copy_path:
@@ -213,7 +213,7 @@ as_read:
 	if_not_equal	as_file_error
 	clear_carry
 	ret
-    as_file_error:
+      as_file_error:
 	set_carry
 	ret
 

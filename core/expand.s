@@ -1514,7 +1514,7 @@ as_process_equ_constants:
         jmp     as_process_after_replaced
       as_replace_special_symbolic_constant:
         jmp     near eax
-    as_preprocessed_file_value:
+      as_preprocessed_file_value:
         call    as_get_current_line_from_file
         test    ebx,ebx
         if_zero as_process_after_replaced
@@ -1537,7 +1537,7 @@ as_process_equ_constants:
         rep     movs as_u8 [edi],[esi]
         pop     esi
         jmp     as_process_after_replaced
-    as_preprocessed_line_value:
+      as_preprocessed_line_value:
         call    as_get_current_line_from_file
         test    ebx,ebx
         if_zero as_process_after_replaced
@@ -1547,7 +1547,7 @@ as_process_equ_constants:
         mov     ecx,[ebx+4]
         call    as_store_number_symbol
         jmp     as_process_after_replaced
-    as_get_current_line_from_file:
+      as_get_current_line_from_file:
         mov     ebx,[as_current_line]
         promote_ebx
       as_find_line_from_file:

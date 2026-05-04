@@ -316,7 +316,7 @@ as_get_params:
 as_collect_path:
 	mov	edi,[as_path_pointer]
 	mov	edx,edi
-     as_copy_path_to_low_memory:
+      as_copy_path_to_low_memory:
 	lodsb
 	stosb
 	test	al,al
@@ -326,20 +326,20 @@ as_collect_path:
 
 include 'core/linux32.s'
 
-include 'core/ver.s'
+include 'core/version.s'
 
 _as_copyright u8 'asm project',0xA,0
 
 _as_logo u8 'x86-ARC (x86 32-bit Assembler & Runtime Core) version ',VERSION_STRING,' (32-bit only)',0
 _as_usage u8 0xA
-       u8 'usage: x86arc <source> [output]',0xA
-       u8 'optional settings:',0xA
-       u8 ' -m <limit>         set the limit in kilobytes for the available memory',0xA
-       u8 ' -p <limit>         set the maximum allowed number of passes',0xA
-       u8 ' -d <n>=<value>  define symbolic variable',0xA
-       u8 ' -s <file>          dump symbolic information for debugging',0xA
-       u8 ' -i <path>          add directory to include search path',0xA
-       u8 0
+	u8 'usage: x86arc <source> [output]',0xA
+	u8 'optional settings:',0xA
+	u8 ' -m <limit>         set the limit in kilobytes for the available memory',0xA
+	u8 ' -p <limit>         set the maximum allowed number of passes',0xA
+	u8 ' -d <n>=<value>  define symbolic variable',0xA
+	u8 ' -s <file>          dump symbolic information for debugging',0xA
+	u8 ' -i <path>          add directory to include search path',0xA
+	u8 0
 _as_memory_prefix u8 '  (',0
 _as_memory_suffix u8 ' kilobytes memory, x86-32 only)',0xA,0
 _as_passes_suffix u8 ' passes, ',0
